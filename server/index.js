@@ -1,9 +1,20 @@
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors');
 const app = express();
 const port = 3005;
 
-//Mysql connection
+//CORS
+app.use(cors());
+
+const corsOptions = {
+    origin: "*",
+    methods: "get",
+    optionsSuccessStatus: 200
+}
+
+
+//Mysql Config
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -11,6 +22,8 @@ const conn = mysql.createConnection({
     database: "mean"
 });
 
+
+//Mysql Connection
 conn.connect((err)=>{
     if (err) throw err;
     console.log('Connected');

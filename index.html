@@ -2,22 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mean Stack App</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js" integrity="sha512-y1qD3hz/IAf8W4+/UMLZ+CN6LIoUGi7srWJ3r1R17Hid8x0yXe+1B5ZelkaL1Mjzedzu0Cg3HBvDG02SAgSzBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="bg-dark">
 <!--Top Section-->
 <div class="top">
-    <div class="nav bg-info text-light d-flex justify-content-center">
+    <div class="nav bg-info text-light justify-content-between px-2">
         <h1>Admin Dashboard</h1>
+        <div class="d-flex w-25 justify-content-around mt-auto mb-auto">
+            <a href="#!view" class="text-light font-weight-bold">View</a>
+            <a href="#!add" class="text-light font-weight-bold">Add</a>
+            <a href="#!add" class="text-light font-weight-bold">Delete</a>
+            <a href="#!add" class="text-light font-weight-bold">Update</a>
+        </div>
     </div>
 </div>
-<div class="main-cont">
-    <div class="container">
-
+<div class="main-cont mt-5" ng-app="myApp" ng-controller="myCtrl">
+    <div class="container w-100">
+        <ng-view></ng-view>
     </div>
 </div>
 <!--Scripts-->
