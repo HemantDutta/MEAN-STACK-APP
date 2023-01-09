@@ -1,11 +1,19 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const bp = require('body-parser');
 const app = express();
 const port = 3005;
 
 //CORS
 app.use(cors());
+
+//JSON
+app.use(express.json());
+
+//Body Parser
+app.use(bp.urlencoded({extended: true}));
+app.use(bp.json());
 
 const corsOptions = {
     origin: "*",
@@ -42,6 +50,23 @@ app.get("/", (req,res)=>{
       if (err) throw err;
       res.send(rows);
        console.log(rows);
+       res.end();
    });
+});
+
+
+//post requests
+app.post("/add", (req,res)=>{
+    res.status(200)
+    res.setHeader('Content-Type', 'application/json');
+    let data = req.body;
+
+    let insertSQL = `insert into users values(${data.id}, '${data.name}', '${data.category}', ${data.rating})`;
+
+    conn.query(insertSQL, (err)=>{
+       if (err) throw err;
+       res.send('Entry Inserted!');
+       res.end();
+    });
 });
 

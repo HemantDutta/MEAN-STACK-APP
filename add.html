@@ -1,10 +1,12 @@
-<div class="addDiv">
-    <h2>Add Form</h2>
+<div class="addDiv d-flex flex-column" ng-controller="addCtrl">
+    <h2 class="text-uppercase text-light">Add Form</h2>
     <div class="addForm">
-        <form action="http://localhost/3005/add" method="post"></form>
-        <input type="text" name="id" id="id" placeholder="Enter id">
-        <input type="text" name="name" id="name" placeholder="Enter Name">
-        <input type="text" name="category" id="category" placeholder="Enter Category">
-        <input type="text" name="rating" id="rating" placeholder="Enter Rating">
+        <form ng-submit="addEntry()" class="d-flex flex-column " style="gap: 10px">
+            <input type="text" name="id" id="id" ng-model="id" placeholder="Enter id">
+            <input type="text" name="name" id="name" ng-model="name" placeholder="Enter Name">
+            <input type="text" name="category" id="category" ng-model="category" placeholder="Enter Category">
+            <input type="text" name="rating" id="rating" ng-model="rating" placeholder="Enter Rating">
+            <button type="submit" class="btn btn-outline-light">ADD</button>
+        </form>
     </div>
-</div>  
+</div>
