@@ -13,7 +13,6 @@ app.use(express.json());
 
 //Body Parser
 app.use(bp.urlencoded({extended: true}));
-app.use(bp.json());
 
 const corsOptions = {
     origin: "*",
@@ -45,22 +44,29 @@ app.listen(port, ()=>{
 
 //get requests
 app.get("/", (req,res)=>{
-   let sql = "select * from users";
-   conn.query(sql, (err,rows)=>{
+   let selectSQL = `select * from users`;
+
+   conn.query(selectSQL, (err,rows)=>{
       if (err) throw err;
+
+      //send to frontend
       res.send(rows);
-       console.log(rows);
-       res.end();
+      console.log(rows);
+      res.end();
    });
 });
 
 
 //post requests
 app.post("/add", (req,res)=>{
-    res.status(200)
+    res.status(200);
     res.setHeader('Content-Type', 'application/json');
-    let data = req.body;
 
+    //Data Fetch from frontend
+    let data = req.body;
+    console.log(data);
+
+    //Insert Query
     let insertSQL = `insert into users values(${data.id}, '${data.name}', '${data.category}', ${data.rating})`;
 
     conn.query(insertSQL, (err)=>{
@@ -68,5 +74,43 @@ app.post("/add", (req,res)=>{
        res.send('Entry Inserted!');
        res.end();
     });
+});
+
+//Update requests
+app.post('/update', (req,res)=>{
+   res.status(200);
+   res.setHeader('Content-Type', 'application/json');
+
+   //Front end data
+   let data = req.body;
+    console.log(data);
+
+   let updateSQL = `update users set name='${data.name}', category='${data.category}', rating=${data.rating} where id = ${data.id}`;
+
+   conn.query(updateSQL, (err)=>{
+       if (err) throw err;
+
+       res.send('Updated');
+       res.end();
+   })
+});
+
+//Delete
+app.post("/delete", (req,res)=>{
+    res.status(200);
+    res.setHeader('Content-Type', 'application/json');
+
+    //Front ENd Data
+    let data = req.body;
+
+    let deleteSQL = `delete from users where id=${data.id}`;
+
+    //Mysql Query
+    conn.query(deleteSQL, (err)=>{
+        if (err) throw err;
+
+        res.send('Deleted');
+        res.end();
+    })
 });
 

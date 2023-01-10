@@ -8,29 +8,11 @@
             <th>Rating</th>
             </thead>
             <tbody>
-            <tr ng-repeat="x in data | filter: test">
+            <tr ng-repeat="x in datas | filter: test">
                 <td>{{x.id}}</td>
                 <td>{{x.name}}</td>
                 <td>{{x.category}}</td>
                 <td>{{x.rating}}</td>
-            </tr>
-            <tr>
-                <td>Search:</td>
-                <td>
-                    <select name="search" id="search" class="custom-select w-75" onchange="showInp(this.value)">
-                        <option value="#" selected>Choose field</option>
-                        <option value="id">Id</option>
-                        <option value="name">Name</option>
-                        <option value="category">Category</option>
-                        <option value="rating">Rating</option>
-                    </select>
-                </td>
-                <td colspan="2">
-                    <input type="text" name="id" id="id" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.id" placeholder="Enter id">
-                    <input type="text" name="name" id="name" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.name" placeholder="Enter Name">
-                    <input type="text" name="category" id="category" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.category" placeholder="Enter Category">
-                    <input type="text" name="rating" id="rating" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.rating" placeholder="Enter Rating">
-                </td>
             </tr>
             </tbody>
         </table>
@@ -38,8 +20,14 @@
     <div class="updateCont text-center mt-4">
         <h3 class="text-light">UPDATE</h3>
         <div class="updateForm">
-            <form>
-
+            <form ng-submit="update()" class="d-flex flex-column" style="gap: 10px">
+                <select name="selId" id="selId" ng-options="x.id for x in datas" ng-model="id" ng-change="getId()">
+                    <option value="#" selected>Choose ID</option>
+                </select>
+                <input type="text" name="name" id="name" ng-model="name" placeholder="Enter Name" class="input-group">
+                <input type="text" name="category" id="category" ng-model="category" placeholder="Enter Category" class="input-group">
+                <input type="text" name="rating" id="rating" ng-model="rating" placeholder="Enter Rating" class="input-group">
+                <button type="submit" class="btn btn-outline-light mt-4">Update</button>
             </form>
         </div>
     </div>
