@@ -12,7 +12,6 @@ app.controller('addCtrl', function ($scope){
     $scope.addEntry = function () {
         const newEntry = `{"id": "${$scope.id}", "name": "${$scope.name}", "category": "${$scope.category}", "rating": "${$scope.rating}"}`;
         console.log(newEntry);
-        // var newData = "{\"id\":\"" + $scope.id + "\", \"name\":\"" + $scope.name + "\", \"email\":\"" + $scope.email + "\", \"item\":\"" + $scope.item + "\", \"amount\":\"" + $scope.amount + "\", \"status\":\"" + $scope.status + "\"}";
         fetch('http://localhost:3005/add', {
             method: "POST",
             body: newEntry,
@@ -28,6 +27,14 @@ app.controller('addCtrl', function ($scope){
     };
 });
 
+//Update Controller
+app.controller('updateCtrl', function ($scope, $http){
+    $http.get('http://localhost:3005/')
+        .then((res)=>{
+            $scope.data = res.data;
+        })
+});
+
 app.config(($routeProvider)=>{
     $routeProvider
         .when("/", {
@@ -35,6 +42,9 @@ app.config(($routeProvider)=>{
         })
         .when("/add", {
             templateUrl: "add.html",
+        })
+        .when("/update", {
+            templateUrl: "update.html",
         })
 });
 

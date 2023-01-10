@@ -1,0 +1,46 @@
+<div ng-controller="updateCtrl">
+    <div class="table-cont">
+        <table class="table-dark table-bordered w-100 text-center">
+            <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Rating</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in data | filter: test">
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.category}}</td>
+                <td>{{x.rating}}</td>
+            </tr>
+            <tr>
+                <td>Search:</td>
+                <td>
+                    <select name="search" id="search" class="custom-select w-75" onchange="showInp(this.value)">
+                        <option value="#" selected>Choose field</option>
+                        <option value="id">Id</option>
+                        <option value="name">Name</option>
+                        <option value="category">Category</option>
+                        <option value="rating">Rating</option>
+                    </select>
+                </td>
+                <td colspan="2">
+                    <input type="text" name="id" id="id" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.id" placeholder="Enter id">
+                    <input type="text" name="name" id="name" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.name" placeholder="Enter Name">
+                    <input type="text" name="category" id="category" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.category" placeholder="Enter Category">
+                    <input type="text" name="rating" id="rating" class="srcInp d-none input-group w-50 mr-auto ml-auto" ng-model="test.rating" placeholder="Enter Rating">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="updateCont text-center mt-4">
+        <h3 class="text-light">UPDATE</h3>
+        <div class="updateForm">
+            <form>
+
+            </form>
+        </div>
+    </div>
+</div>
