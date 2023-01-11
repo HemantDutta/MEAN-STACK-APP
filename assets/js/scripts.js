@@ -101,7 +101,7 @@ app.config(($routeProvider)=>{
         })
 });
 
-
+//Input Display for search
 function showInp(inp){
     document.querySelectorAll(".srcInp").forEach(x=>{
         if(x.id !== inp){
